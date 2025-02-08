@@ -20,5 +20,5 @@ jobs:
 
       - name: 🚀 Executing Scripting JBang
         env:
-          API_ENDPOINT: ${{ vars.API_ENDPOINT }}  # endpoint to recebive the endpoint
+          API_ENDPOINT: ${{ vars.API_ENDPOINT }}  # capturing from Github
         run: jbang send_openapi.java
