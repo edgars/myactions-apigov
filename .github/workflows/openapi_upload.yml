@@ -17,8 +17,9 @@ jobs:
         run: |
           curl -Ls https://sh.jbang.dev | bash
           echo "$HOME/.jbang/bin" >> $GITHUB_PATH
+          clear
 
       - name: 🚀 Executing Scripting JBang
         env:
-          API_ENDPOINT: "https://webhook.site/06447631-b5b2-43a9-9f7d-028f0d3a4618"  # capturing from Github
+          API_ENDPOINT: ${{ secrets.API_ENDPOINT }}  # capturing from Github
         run: jbang send_openapi.java
