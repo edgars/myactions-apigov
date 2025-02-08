@@ -1,0 +1,24 @@
+name: OpenAPI Uploader
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload_openapi:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔽 Checkout do Código
+        uses: actions/checkout@v3
+
+      - name: 📦 Instalar JBang
+        run: |
+          curl -Ls https://sh.jbang.dev | bash
+          echo "$HOME/.jbang/bin" >> $GITHUB_PATH
+
+      - name: 🚀 Executar o Script JBang
+        env:
+          API_ENDPOINT: "https://seu-endpoint.com/api/upload"  # Altere para seu endpoint real
+        run: jbang send_openapi.java
