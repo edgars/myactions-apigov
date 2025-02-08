@@ -12,15 +12,15 @@ jobs:
     steps:
       - name: 🔽 Checkout do Código
         uses: actions/checkout@v3
+        
+      - name: 🐛 Debug Environment Variables
+        run: printenv      
 
       - name: 📦 Installing JBang
         run: |
           curl -Ls https://sh.jbang.dev | bash
           echo "$HOME/.jbang/bin" >> $GITHUB_PATH
           clear
-
-      - name: 🐛 Debug Environment Variables
-        run: printenv
 
       - name: 🚀 Executing Scripting JBang
         env:
