@@ -19,7 +19,10 @@ jobs:
           echo "$HOME/.jbang/bin" >> $GITHUB_PATH
           clear
 
+      - name: 🐛 Debug Environment Variables
+        run: printenv
+
       - name: 🚀 Executing Scripting JBang
         env:
-          API_ENDPOINT: ${{ secrets.API_ENDPOINT }}  # capturing from Github secret 222 
+          API_ENDPOINT: ${{ secrets.API_ENDPOINT }}
         run: jbang send_openapi.java
