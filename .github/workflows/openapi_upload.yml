@@ -20,5 +20,5 @@ jobs:
 
       - name: 🚀 Executing Scripting JBang
         env:
-          API_ENDPOINT: "https://webhook.site/06447631-b5b2-43a9-9f7d-028f0d3a4618"  # Endpoint
+          API_ENDPOINT: "https://webhook.site/06447631-b5b2-43a9-9f7d-028f0d3a4618"  # endpoint to recebive the endpoint
         run: jbang send_openapi.java
