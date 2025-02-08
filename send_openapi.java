@@ -23,6 +23,8 @@ public class send_openapi {
         if (API_ENDPOINT == null || API_ENDPOINT.isEmpty()) {
             System.err.println("❌ ERRO: API has not been defined!");
             System.exit(1);
+        } else {
+            System.out.println("🟢 ENDPONT: " + API_ENDPOINT);
         }
 
         List<Path> openApiFiles = findOpenApiFiles(Paths.get("."));
