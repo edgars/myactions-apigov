@@ -23,7 +23,7 @@ jobs:
         run: echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/my-app:$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
 
       - name: Build Docker Image
-        run: docker build -t $IMAGE_NAME .
+        run: docker build -t $IMAGE_NAME -f ./gateways/krakend/Dockerfile .
 
       - name: Push Docker Image
         run: docker push $IMAGE_NAME
