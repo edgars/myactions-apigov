@@ -27,6 +27,9 @@ jobs:
 
       - name: Push Docker Image
         run: docker push $IMAGE_NAME
+
+      - name: Save Docker Image as Tar Archive
+        run: docker save -o deploy.tar $IMAGE_NAME   
       
       - name: Deploy Image to CapRrover
         uses: caprover/deploy-from-github@v1.1.2
