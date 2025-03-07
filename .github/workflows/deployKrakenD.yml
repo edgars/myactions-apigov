@@ -27,3 +27,11 @@ jobs:
 
       - name: Push Docker Image
         run: docker push $IMAGE_NAME
+      
+      - name: Deploy Image to CapRrover
+        uses: caprover/deploy-from-github@v1.1.2
+        with:
+          server: "${{ secrets.CAPROVER_SERVER }}"
+          app: "${{ secrets.APP_NAME }}"
+          token: "${{ secrets.APP_TOKEN }}"
+          image: ${{ env.IMAGE_URL }}
