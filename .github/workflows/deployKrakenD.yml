@@ -27,6 +27,3 @@ jobs:
 
       - name: Push Docker Image
         run: docker push $IMAGE_NAME
-
-      - name: Output Image URL
-        run: echo "Pushed image to Docker Hub: $IMAGE_NAME"
