@@ -1,0 +1,30 @@
+{
+  "$schema": "https://www.krakend.io/schema/krakend.json",
+  "version": 3,
+  "name": "KrakenD - API Gateway",
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "endpoints": [
+    {
+      "endpoint": "/v1/colombia/attractions",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "backend": [
+        {
+          "url_pattern": "/api/v1/TouristicAttraction",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "host": [
+            "https://api-colombia.com"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    }
+  ],
+  "output_encoding": "json",
+  "debug_endpoint": true,
+  "echo_endpoint": true,
+  "port": 3980
+}
