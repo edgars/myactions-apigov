@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set Image Name
-        run: echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/my-app:$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
+        run: echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/konneqt-sample-gateway:$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
 
       - name: Build Docker Image
         run: docker build -t $IMAGE_NAME -f ./gateways/krakend/Dockerfile .
