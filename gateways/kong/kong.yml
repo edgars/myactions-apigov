@@ -15,3 +15,18 @@ services:
         config:
           replace:
             uri: /api/v1/Airport  # Rewrite to correct upstream path
+
+  - name: colombia-airports-service-info
+    url: https://api-colombia.com  # Base upstream server
+    routes:
+      - name: colombia-airports-route
+        paths:
+          - /v1/colombia/info
+        strip_path: true  # Ensures Kong removes "/v1/colombia/airports"
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /api/v1/Country/Colombia  # Rewrite to correct upstream path            
