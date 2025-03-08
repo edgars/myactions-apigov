@@ -16,10 +16,10 @@ services:
           replace:
             uri: /api/v1/Airport  # Rewrite to correct upstream path
 
-  - name: colombia-airports-service-info
+  - name: colombia-aicountry-info-service
     url: https://api-colombia.com  # Base upstream server
     routes:
-      - name: colombia-airports-route
+      - name: colombia-country-info
         paths:
           - /v1/colombia/info
         strip_path: true  # Ensures Kong removes "/v1/colombia/airports"
