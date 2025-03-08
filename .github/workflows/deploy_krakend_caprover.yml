@@ -36,7 +36,7 @@ jobs:
 
       - name: Show IMAGE_NAME Using GitHub Actions Syntax
         run: |
-          echo "IMAGE_NAME is: $IMAGE_NAME"
+          echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/konneqt-sample-gateway:$(echo ${{ github.sha }} | cut -c1-7)"
 
       
       - name: Deploy to CapRover via Docker Image
