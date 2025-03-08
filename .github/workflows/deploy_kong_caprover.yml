@@ -45,4 +45,4 @@ jobs:
           server: "${{ secrets.CAPROVER_SERVER }}"
           app: "${{ secrets.KONG_GW_APP }}"
           token: "${{ secrets.KONG_APP_TOKEN }}"
-          image: "edgars/konneqt-kong-gw:latest:latest"
+          image: "edgars/konneqt-kong-gw:latest"
