@@ -37,7 +37,7 @@ services:
       - name: colombia-attraction
         paths:
           - /v1/colombia/attractions
-        strip_path: true  # Ensures Kong removes "/v1/colombia/airports"
+        strip_path: true  # Ensures Kong removes "/v1/colombia/attractions"
         methods:
           - GET
     plugins:
