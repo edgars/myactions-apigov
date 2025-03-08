@@ -1,0 +1,17 @@
+_format_version: "3.0"
+
+services:
+  - name: colombia-airports-service
+    url: https://api-colombia.com  # Base upstream server
+    routes:
+      - name: colombia-airports-route
+        paths:
+          - /v1/colombia/airports
+        strip_path: true  # Ensures Kong removes "/v1/colombia/airports"
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /api/v1/Airport  # Rewrite to correct upstream path
