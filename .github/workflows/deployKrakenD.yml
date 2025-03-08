@@ -29,7 +29,7 @@ jobs:
         run: docker push $IMAGE_NAME
         
       - name: Show IMAGE_NAME
-        run: echo "IMAGE_NAME is: $IMAGE_NAME"       
+        run: printenv    
       
       - name: Deploy to CapRover via Docker Image
         uses: caprover/deploy-from-github@v1.1.2
