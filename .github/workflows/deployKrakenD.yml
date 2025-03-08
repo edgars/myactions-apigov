@@ -21,15 +21,22 @@ jobs:
 
       - name: Set Image Name
         run: echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/konneqt-sample-gateway:$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
+        env:
+          IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/konneqt-sample-gateway:$(echo ${{ github.sha }} | cut -c1-7)
 
       - name: Build Docker Image
         run: docker build -t $IMAGE_NAME -f ./gateways/krakend/Dockerfile .
 
       - name: Push Docker Image
         run: docker push $IMAGE_NAME
-        
-      - name: Show IMAGE_NAME
-        run: cat $GITHUB_ENV    
+
+      - name: Debugging - Check IMAGE_NAME in GITHUB_ENV
+        run: cat $GITHUB_ENV
+
+      - name: Show IMAGE_NAME Using GitHub Actions Syntax
+        run: |
+          echo "IMAGE_NAME is: $IMAGE_NAME"
+
       
       - name: Deploy to CapRover via Docker Image
         uses: caprover/deploy-from-github@v1.1.2
@@ -37,4 +44,4 @@ jobs:
           server: "${{ secrets.CAPROVER_SERVER }}"
           app: "${{ secrets.APP_NAME }}"
           token: "${{ secrets.APP_TOKEN }}"
-          image: "{{ env.IMAGE_NAME }}"     
+          image: ${{ secrets.DOCKERHUB_USERNAME }}/konneqt-sample-gateway:$(echo ${{ github.sha }} | cut -c1-7)  
