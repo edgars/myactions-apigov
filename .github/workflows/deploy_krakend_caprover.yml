@@ -3,7 +3,7 @@ name: Deploy KrakenD Gateway
 on:
   push:
     paths:
-      - "/gateways/krakend/krakend.json"  # Somente quando esse arquivo for modificado
+      - "gateways/krakend/krakend.json"  # Somente quando esse arquivo for modificado
 
 jobs:
   build-and-push:

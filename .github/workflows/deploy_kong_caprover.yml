@@ -3,7 +3,7 @@ name: Deploy Kong Gateway
 on:
   push:
     paths:
-      - "/gateways/kong/kong.yml"  # Somente quando esse arquivo for modificado
+      - "gateways/kong/kong.yml"  # Somente quando esse arquivo for modificado
 
 jobs:
   build-and-push:
