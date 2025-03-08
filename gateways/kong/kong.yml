@@ -17,7 +17,7 @@ services:
             uri: /api/v1/Airport  # Rewrite to correct upstream path
 
   - name: colombia-country-info-service
-    url: https://api-colombia.com  # Base upstream server
+    url: https://api-colombia.com  # Base upstream server from colombia api
     routes:
       - name: colombia-country-info
         paths:
