@@ -30,3 +30,18 @@ services:
         config:
           replace:
             uri: /api/v1/Country/Colombia  # Rewrite to correct upstream path            
+
+  - name: colombia-attraction-info-service
+    url: https://api-colombia.com  # Base upstream server
+    routes:
+      - name: colombia-attraction
+        paths:
+          - /v1/colombia/attractions
+        strip_path: true  # Ensures Kong removes "/v1/colombia/airports"
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /api/v1/TouristicAttraction  # Rewrite to correct upstream path   
