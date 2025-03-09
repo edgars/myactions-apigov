@@ -44,4 +44,4 @@ services:
       - name: request-transformer
         config:
           replace:
-            uri: /api/v1/TouristicAttraction  # Rewrite to correct upstream path new novo
+            uri: /api/v1/TouristicAttraction  # Rewrite to correct upstream path - now it goes

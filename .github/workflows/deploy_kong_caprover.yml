@@ -21,7 +21,7 @@ jobs:
 
       - name: Set Image Name
         #run: echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/konneqt-sample-gateway:$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
-        run: echo "IMAGE_NAME=edgars/konneqt-sample-gateway:latest" >> $GITHUB_ENV
+        run: echo "IMAGE_NAME=edgars/konneqt-kong-gw:latest" >> $GITHUB_ENV
         env:
           IMAGE_NAME: IMAGE_NAME=edgars/konneqt-kong-gw:latest
 
@@ -36,7 +36,7 @@ jobs:
 
       - name: Show IMAGE_NAME Using GitHub Actions Syntax
         run: |
-          echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/konneqt-sample-gateway:$(echo ${{ github.sha }} | cut -c1-7)"
+          echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/edgars/konneqt-kong-gw:$(echo ${{ github.sha }} | cut -c1-7)"
 
       
       - name: Deploy to CapRover via Docker Image
