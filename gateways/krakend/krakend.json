@@ -8,6 +8,7 @@
     {
       "endpoint": "/v1/colombia/airports",
       "method": "GET",
+      "@comment": "teste",
       "output_encoding": "no-op",
       "backend": [
         {
