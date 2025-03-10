@@ -47,7 +47,7 @@ services:
             uri: /api/v1/TouristicAttraction  # Rewrite to correct upstream path - now it goes
 
   - name: crys sample
-    url: https://63ee25ec5e9f1583bdbd0d37.mockapi.io/ # Base upstream server
+    url: https://63ee25ec5e9f1583bdbd0d37.mockapi.io # Base upstream server
     routes:
       - name: crys-users
         paths:
