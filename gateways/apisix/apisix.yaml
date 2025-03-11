@@ -1,0 +1,43 @@
+routes:
+  - id: 1
+    name: colombia-airports-route
+    uri: /v1/colombia/airports
+    methods: ["GET"]
+    upstream:
+      type: roundrobin
+      scheme: https  # ✅ Ensures HTTPS is used
+      pass_host: node  # ✅ Passes the exact upstream hostname
+      nodes:
+        "api-colombia.com:443": 1
+    plugins:
+      proxy-rewrite:
+        uri: /api/v1/Airport  # ✅ Corrects the upstream request path
+
+  - id: 2
+    name: colombia-country-info-route
+    uri: /v1/colombia/info
+    methods: ["GET"]
+    upstream:
+      type: roundrobin
+      scheme: https
+      pass_host: node
+      nodes:
+        "api-colombia.com:443": 1
+    plugins:
+      proxy-rewrite:
+        uri: /api/v1/Country/Colombia
+
+  - id: 3
+    name: colombia-attractions-route
+    uri: /v1/colombia/attractions
+    methods: ["GET"]
+    upstream:
+      type: roundrobin
+      scheme: https
+      pass_host: node
+      nodes:
+        "api-colombia.com:443": 1
+    plugins:
+      proxy-rewrite:
+        uri: /api/v1/TouristicAttraction
+#END

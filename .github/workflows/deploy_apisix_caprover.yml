@@ -1,0 +1,48 @@
+name: Deploy Kong Gateway
+
+on:
+  push:
+    paths:
+      - "gateways/apisix/apisix.yaml"  # Somente quando esse arquivo for modificado
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set Image Name
+        #run: echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/konneqt-sample-gateway:$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
+        run: echo "IMAGE_NAME=edgars/konneqt-apisix:latest" >> $GITHUB_ENV
+        env:
+          IMAGE_NAME: IMAGE_NAME=edgars/konneqt-apisix:latest
+
+      - name: Build Docker Image
+        run: docker build -t $IMAGE_NAME -f ./gateways/apisix/Dockerfile .
+
+      - name: Push Docker Image
+        run: docker push $IMAGE_NAME
+
+      - name: Debugging - Check IMAGE_NAME in GITHUB_ENV
+        run: cat $GITHUB_ENV
+
+      - name: Show IMAGE_NAME Using GitHub Actions Syntax
+        run: |
+          echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/edgars/konneqt-apisix:$(echo ${{ github.sha }} | cut -c1-7)"
+
+      
+      - name: Deploy to CapRover via Docker Image
+        uses: caprover/deploy-from-github@v1.1.2
+        with:
+          server: "${{ secrets.CAPROVER_SERVER }}"
+          app: "${{ secrets.APISIX_APP }}"
+          token: "${{ secrets.APISIX_TOKEN }}"
+          image: "edgars/konneqt-apisix:latest"
